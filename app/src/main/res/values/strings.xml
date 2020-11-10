@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Password Generator</string>
+    <string name="cap_text">Include Capitals</string>
+    <string name="num_text">Numbers</string>
+</resources>
