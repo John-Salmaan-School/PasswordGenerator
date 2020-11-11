@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
                         }
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "Password length limit is 25", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Password length limit is: 25", Toast.LENGTH_LONG).show();
                     }
                 }
             }
