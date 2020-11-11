@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu_font"
             android:lines="2"
-            android:text="Special Characters\n($, !, \\, etc)" />
+            android:text="Special Characters" />
 
     </LinearLayout>
 

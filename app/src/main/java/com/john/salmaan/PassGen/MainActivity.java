@@ -3,7 +3,6 @@ package com.john.salmaan.PassGen;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.ActionBar;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -13,7 +12,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,13 +28,14 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity /*implements SensorEventListener*/ {
 
-    public boolean iscChanging = false;
+    public boolean isChanging = false;
 
     private SensorManager manager;
     private float Accel;
     private float AccelCurrent;
     private float AccelLast;
     private boolean genAgain;
+    private boolean isShaked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
         Button button = findViewById(R.id.generate);
         SeekBar seekBar = findViewById(R.id.lenseekbar);
         TextView password = findViewById(R.id.copy);
+        EditText lenPass = findViewById(R.id.passsize);
 
         button.setOnClickListener(v -> {
             genPass();
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (iscChanging) {
+                if (isChanging) {
                     EditText lenPass = findViewById(R.id.passsize);
                     lenPass.setText(String.valueOf(seekBar.getProgress()));
                 }
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                iscChanging = true;
+                isChanging = true;
             }
 
             @Override
@@ -90,7 +93,43 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
                     Toast.makeText(getApplicationContext(), "Strong password", Toast.LENGTH_LONG).show();
                 }
 
-                iscChanging = false;
+                isChanging = false;
+            }
+        });
+
+        lenPass.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                if (!s.toString().equals("")) {
+                    int length = Integer.parseInt(s.toString());
+
+                    if (length <= 25) {
+                        seekBar.setProgress(length);
+
+                        if (!isChanging) {
+                            if (length < 10 && length > 0) {
+                                Toast.makeText(getApplicationContext(), "Weak password", Toast.LENGTH_LONG).show();
+                            } else if (length >= 10 && length <= 15) {
+                                Toast.makeText(getApplicationContext(), "Medium password", Toast.LENGTH_LONG).show();
+                            } else if (length > 15) {
+                                Toast.makeText(getApplicationContext(), "Strong password", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Password length limit is 25", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -213,9 +252,19 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
             float d = AccelCurrent - AccelLast;
             Accel = Accel * 0.9f + d;
 
-            if (Accel > 17) {
-                genPass();
-                Toast.makeText(getApplicationContext(), "Password Generated", Toast.LENGTH_LONG).show();
+            if (!isShaked) {
+                if (Accel > 17) {
+                    genPass();
+                    isShaked = true;
+                    Toast.makeText(getApplicationContext(), "Password Generated", Toast.LENGTH_LONG).show();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            isShaked = false;
+                        }
+                    }, 2000);
+                }
             }
         }
 
@@ -224,6 +273,8 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
 
         }
     };
+
+
 
     @Override
     protected void onPause() {
