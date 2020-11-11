@@ -46,9 +46,14 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
         SeekBar seekBar = findViewById(R.id.lenseekbar);
         TextView password = findViewById(R.id.copy);
         EditText lenPass = findViewById(R.id.passsize);
+        Button about = findViewById(R.id.Showdesc);
 
         button.setOnClickListener(v -> {
             genPass();
+        });
+
+        about.setOnClickListener(v -> {
+            revDesc();
         });
 
         password.setOnClickListener(v -> {
@@ -299,5 +304,10 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
         else {
             Toast.makeText(getApplicationContext(), "You haven't generated a password yet", Toast.LENGTH_LONG).show();
         }
+    }
+    private void revDesc () {
+        TextView description = findViewById(R.id.description);
+        String message = "Welcome to the Mobile Password Generator, made by Jonathan Liong and Salmaan Nagoormira. This app allows you to generate custom passwords based on what preferences you want.";
+        description.setText(message);
     }
 }

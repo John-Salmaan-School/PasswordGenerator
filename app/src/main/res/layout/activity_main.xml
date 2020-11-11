@@ -29,7 +29,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu_font"
-                android:text="Welcome to the Mobile Password Generator, made by Jono Liong and Salmaan Nagoormira. \nThis app allows you to generate custom passwords based on what preferences you want." />
+                android:text="About Us"
+                android:translationY = "-17dp"/>
+
+            <Button
+                android:id="@+id/Showdesc"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="?"
+                android:translationX = "-70dp"
+                android:translationY= "5dp"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="262dp"
+                android:layout_height="126dp"
+                android:translationX="-25dp"
+                android:translationY="-15dp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -39,7 +57,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/ubuntu_font"
         android:gravity="center_horizontal"
-        android:translationY="25dp"
+        android:translationY="100dp"
         android:textAlignment="center" />
 
     <TextView
@@ -50,7 +68,7 @@
         android:gravity="center_horizontal"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:translationY="30dp"
+        android:translationY="50dp"
         android:text="Tap here to copy"
         />
 
@@ -58,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:translationY="35dp"
+        android:translationY="100dp"
         android:orientation="horizontal">
 
         <CheckBox
@@ -89,8 +107,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:translationY="25dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:translationY="115dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -112,7 +130,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:translationY="75dp"
+        android:translationY="125dp"
         android:orientation="vertical">
 
         <SeekBar
@@ -129,12 +147,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Generate"
-        android:translationY="90dp" />
+        android:translationY="130dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:translationY="85dp"
+        android:translationY="140dp"
         android:gravity="center"
         android:orientation="vertical">
         <TextView
@@ -147,7 +165,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/phoneshake" />
+            android:src="@drawable/phoneshake"/>
     </LinearLayout>
+
 
 </LinearLayout>
