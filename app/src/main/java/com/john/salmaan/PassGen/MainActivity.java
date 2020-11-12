@@ -2,6 +2,7 @@ package com.john.salmaan.PassGen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -15,6 +16,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
     private float AccelLast;
     private boolean genAgain;
     private boolean isShaked;
+    private boolean shown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
         AccelLast = SensorManager.GRAVITY_EARTH;
 
         genAgain = false;
+        shown = false;
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -307,7 +311,17 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
     }
     private void revDesc () {
         TextView description = findViewById(R.id.description);
+        CardView cardView = findViewById(R.id.descview);
         String message = "Welcome to the Mobile Password Generator, made by Jonathan Liong and Salmaan Nagoormira. This app allows you to generate custom passwords based on what preferences you want.";
         description.setText(message);
+
+        if (!shown) {
+            cardView.setVisibility(View.VISIBLE);
+            shown = true;
+        }
+        else {
+            cardView.setVisibility(View.GONE);
+            shown = false;
+        }
     }
 }
