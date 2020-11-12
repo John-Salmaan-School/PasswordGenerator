@@ -24,11 +24,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Random;
 
-public class MainActivity extends AppCompatActivity /*implements SensorEventListener*/ {
+public class MainActivity extends AppCompatActivity {
 
     public boolean isChanging = false;
 
@@ -173,53 +173,53 @@ public class MainActivity extends AppCompatActivity /*implements SensorEventList
                     String passChars = strNumbers + strSpecChar + strCapCharacters + strCharacters;
                     int lenPassChar = passChars.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(passChars.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 } else if (boolSpecial && boolCapitalandLower) {
                     String passChars = strSpecChar + strCharacters + strCapCharacters;
                     int lenPassChar = passChars.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(passChars.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 } else if (boolSpecial && boolNumber) {
                     String passChars = strSpecChar + strNumbers;
                     int lenPassChar = passChars.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(passChars.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 } else if (boolNumber && boolCapitalandLower) {
                     String passChars = strCapCharacters + strCharacters + strNumbers;
                     int lenPassChar = passChars.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(passChars.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 } else if (boolNumber) {
                     int lenPassChar = strNumbers.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(strNumbers.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 } else if (boolSpecial) {
                     int lenPassChar = strSpecChar.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(strSpecChar.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 } else if (boolCapitalandLower) {
                     String passChars = strCapCharacters + strCharacters;
                     int lenPassChar = passChars.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(passChars.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 } else {
                     int lenPassChar = strCharacters.length();
 
-                    Random rd = new Random();
+                    SecureRandom rd = new SecureRandom();
                     String random = String.valueOf(strCharacters.charAt(rd.nextInt(lenPassChar)));
                     pass_array.add(random);
                 }
